@@ -1,7 +1,7 @@
 {
   "name": "sonnetmobile",
   "version": "1.0.0",
-  "main": "main.js",
+  "main": "index.js",
   "homepage": "./",
   "scripts": {
     "start": "expo start",
@@ -9,7 +9,7 @@
     "ios": "expo start --ios",
     "web": "expo start --web",
     "build": "npx expo export --platform web --output-dir dist",
-    "electron": "electron .",
+    "electron": "electron main.js",
     "build-electron": "electron-builder"
   },
   "dependencies": {
