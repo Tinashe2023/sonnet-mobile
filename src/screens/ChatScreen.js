@@ -1161,7 +1161,7 @@ const getStyles = (colors) => StyleSheet.create({
         paddingHorizontal: 18,
         borderBottomWidth: 1,
         borderBottomColor: colors.borderMedium,
-        backgroundColor: '#ededed',
+        backgroundColor: colors.inputBg,
     },
     groupTabActive: {
         backgroundColor: colors.white,
@@ -1174,19 +1174,19 @@ const getStyles = (colors) => StyleSheet.create({
         color: colors.textSecondary,
     },
     groupTabTextActive: {
-        color: colors.headerDark,
+        color: colors.textPrimary,
     },
     usersHeader: {
         paddingVertical: 10,
         paddingHorizontal: 18,
-        backgroundColor: '#ededed',
+        backgroundColor: colors.inputBg,
         borderBottomWidth: 1,
         borderBottomColor: colors.borderMedium,
     },
     usersHeaderText: {
         fontSize: 12,
         fontWeight: '600',
-        color: colors.textSecondary,
+        color: colors.textPrimary,
         textTransform: 'uppercase',
         letterSpacing: 0.5,
     },
@@ -1200,10 +1200,10 @@ const getStyles = (colors) => StyleSheet.create({
         paddingHorizontal: 18,
         gap: 12,
         borderBottomWidth: 1,
-        borderBottomColor: '#f0f0f0',
+        borderBottomColor: colors.borderLight,
     },
     userItemActive: {
-        backgroundColor: '#e7f3ff',
+        backgroundColor: colors.receivedBubble,
         borderLeftWidth: 3,
         borderLeftColor: colors.primaryGreen,
     },
@@ -1246,7 +1246,7 @@ const getStyles = (colors) => StyleSheet.create({
         backgroundColor: colors.online,
     },
     userItemPinned: {
-        backgroundColor: 'rgba(7, 94, 84, 0.06)',
+        backgroundColor: 'rgba(0, 168, 132, 0.1)',
         borderLeftWidth: 3,
         borderLeftColor: '#FFD700',
     },
@@ -1287,7 +1287,7 @@ const getStyles = (colors) => StyleSheet.create({
     },
     replyPreviewText: {
         fontSize: 14,
-        color: 'rgba(0,0,0,0.65)',
+        color: colors.textSecondary,
     },
     closeReplyBtn: {
         padding: 8,
