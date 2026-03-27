@@ -39,6 +39,8 @@ export default function ChatScreen({ route, navigation }) {
     const { user } = route.params;
     const currentUser = user;
     const roomId = user.roomId;
+    const isPublicRoom = roomId === 'public';
+    const isAdmin = currentUser.isAdmin === true;
 
     const [messages, setMessages] = useState([]);
     const [messageText, setMessageText] = useState('');
@@ -504,7 +506,8 @@ export default function ChatScreen({ route, navigation }) {
         if (activeChat !== 'group' && activeChatUser) {
             return activeChatUser.username;
         }
-        return roomId && roomId !== 'public' ? `Private Room (${roomId})` : 'Class Chat Room';
+        if (isPublicRoom) return '📢 Announcements';
+        return `Private Room (${roomId})`;
     };
 
     const getChatStatus = () => {
@@ -761,7 +764,7 @@ export default function ChatScreen({ route, navigation }) {
                                 activeChat === 'group' && styles.groupTabTextActive,
                             ]}
                         >
-                            💬 Group Chat
+                            {isPublicRoom ? '📢 Announcements' : '💬 Group Chat'}
                         </Text>
                     </TouchableOpacity>
 
@@ -892,8 +895,15 @@ export default function ChatScreen({ route, navigation }) {
                 </View>
             )}
 
-            {/* Input Area */}
+            {/* Input Area / Broadcast Banner */}
             {!showVoiceRecorder && (
+                // Show read-only banner for non-admins in public room group chat
+                (isPublicRoom && activeChat === 'group' && !isAdmin) ? (
+                    <View style={styles.broadcastBanner}>
+                        <Text style={styles.broadcastIcon}>📢</Text>
+                        <Text style={styles.broadcastText}>This is a broadcast channel. Only admins can post here.</Text>
+                    </View>
+                ) : (
                 <View style={styles.inputArea}>
                     <View style={styles.inputRow}>
                         <TouchableOpacity style={styles.attachBtn} onPress={() => setIsEmojiPickerOpen(true)}>
@@ -930,6 +940,7 @@ export default function ChatScreen({ route, navigation }) {
                         </TouchableOpacity>
                     </View>
                 </View>
+                )
             )}
 
             {/* User Profile Modal */}
@@ -1537,5 +1548,26 @@ const getStyles = (colors) => StyleSheet.create({
     stickerEmptyText: {
         fontSize: 14,
         color: colors.textMuted,
+    },
+
+    // Broadcast Banner (read-only public chat)
+    broadcastBanner: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        backgroundColor: colors.headerDark,
+        paddingHorizontal: 16,
+        paddingVertical: 14,
+        gap: 10,
+        borderTopWidth: 1,
+        borderTopColor: colors.borderLight,
+    },
+    broadcastIcon: {
+        fontSize: 20,
+    },
+    broadcastText: {
+        flex: 1,
+        fontSize: 13,
+        color: colors.textOnDark,
+        fontStyle: 'italic',
     },
 });
