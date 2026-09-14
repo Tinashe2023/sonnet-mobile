@@ -40,8 +40,8 @@
     "socket.io-client": "^4.8.3"
   },
   "devDependencies": {
-    "electron": "^39.8.10",
-    "electron-builder": "^26.8.1"
+    "electron": "^39.8.5",
+    "electron-builder": "^26.15.3"
   },
   "private": true,
   "build": {
